@@ -28,7 +28,7 @@ public class PnlStatusPlayer : MonoBehaviour
     private void AtualizarStatusMana()
     {
         manaSlider.value = manaAtual;
-        txtMana.text = $"{manaAtual}/{manaMax}";
+        txtMana.text = $"{(int)manaAtual}/{manaMax}";
     }
 
     public void ConsumirMana(float consumo)

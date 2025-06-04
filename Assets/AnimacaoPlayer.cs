@@ -22,7 +22,7 @@ public class AnimacaoPlayer : MonoBehaviour
         animatorCajado.SetBool("AtaqueConstante", true);
         animatorCajado.SetBool("Parado", false);
     }
-        public void PlayParado()
+    public void PlayParado()
     {
         animatorCajado.SetBool("Ataque", false);
         animatorCajado.SetBool("AtaqueConstante", false);
