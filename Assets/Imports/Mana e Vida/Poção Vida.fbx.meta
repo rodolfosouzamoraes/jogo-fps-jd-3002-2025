@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b5957e0dbfd383b49aad82f23863c1a3
+guid: f85c43ad1cc7e4045b98c7a75abe7a39
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Mana
-    second: {fileID: 2100000, guid: e98e91ce27ac4ca4e96b12d89470bc4e, type: 2}
+      name: Madeira
+    second: {fileID: 2100000, guid: b399905f43dab5c4eb184ce6dcacfc14, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Rolha
-    second: {fileID: 2100000, guid: b399905f43dab5c4eb184ce6dcacfc14, type: 2}
+      name: Vida
+    second: {fileID: 2100000, guid: 3ead9453f09a5024eb31aef71039cae2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -84,7 +84,7 @@ ModelImporter:
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
