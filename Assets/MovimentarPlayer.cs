@@ -7,6 +7,7 @@ public class MovimentarPlayer : MonoBehaviour
     public float velocidadeCorrida; //Velocidade de corrida do player
     public float forcaPulo; //Definir a força de subida do player
     public float forcaQueda; //Definir a força de queda do player
+    public float valorConsumoStamina;//Definir o valor da stamina que será consumida
     private Vector3 direcaoMovimentacao; //Direção para onde o player deve ir
     private CharacterController playerControlador; //Variavel de controle do player
 
@@ -16,6 +17,9 @@ public class MovimentarPlayer : MonoBehaviour
     private Camera playerCamera; //Variavel com a referencia da camera do jogador
     private float cameraAnguloX; //Armazenar o valor do angulo X da camera
 
+
+    private float velocidadeFrontal;
+    private float velocidadeLateral;    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,14 +54,29 @@ public class MovimentarPlayer : MonoBehaviour
         //Obter o input que faz o jogador correr
         bool estaCorrendo = Input.GetKey(KeyCode.LeftShift);
 
-        //Calcular a velocidade frontal
-        float velocidadeFrontal = estaCorrendo == true ? velocidadeCorrida : velocidadeCaminhada;
+        //Verificar se tem stamina para poder correr
+        if (CanvasGameMng.PnlStatusPlayer.TemStamina() == true)
+        {
+            //Calcular a velocidade frontal
+            velocidadeFrontal = estaCorrendo == true ? velocidadeCorrida : velocidadeCaminhada;
+            
+            //Calcular a velocidade lateral
+            velocidadeLateral = estaCorrendo == true ? velocidadeCorrida : velocidadeCaminhada;
+
+            //Consumir a stamina
+            if (estaCorrendo == true) {
+                CanvasGameMng.PnlStatusPlayer.ConsumirStamina(valorConsumoStamina);
+            }
+        }
+        else
+        {
+            //Definir a velocidade de caminhada
+            velocidadeFrontal = velocidadeCaminhada;
+            velocidadeLateral = velocidadeCaminhada;
+        }
 
         //Definir o movimento para frente ou para tras do player
         velocidadeFrontal *= Input.GetAxis("Vertical");
-
-        //Calcular a velocidade lateral
-        float velocidadeLateral = estaCorrendo == true ? velocidadeCorrida : velocidadeCaminhada;
 
         //Definir o movimento para direita ou esquerda do player
         velocidadeLateral *= Input.GetAxis("Horizontal");

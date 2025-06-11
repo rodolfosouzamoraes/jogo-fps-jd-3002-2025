@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +18,15 @@ public class PnlStatusPlayer : MonoBehaviour
     public float vidaAtual;
     public Slider vidaSlider;
     public TextMeshProUGUI txtVida;
+
+    [Header("Config Stamina")]
+    public float staminaMax;
+    public float staminaAtual;
+    public Slider staminaSlider;
+    public TextMeshProUGUI txtStamina;
+    public float valorRestaurarStamina;
+    private bool permitirRestaurarStamina;
+    private Coroutine coroutineStamina;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +52,29 @@ public class PnlStatusPlayer : MonoBehaviour
 
         //Configurar o texto da vida
         txtVida.text = $"{vidaAtual}/{vidaMax}";
+
+        //Definir a stamina inicial
+        staminaAtual = staminaMax;
+
+        //configurar o slider
+        staminaSlider.maxValue = staminaMax;
+        staminaSlider.minValue = 0;
+        staminaSlider.value = staminaAtual;
+
+        //Configurar texto da stamina
+        txtStamina.text = $"{staminaAtual}/{staminaMax}";
+
+        //Definir para não restaurar no inicio a stamina
+        permitirRestaurarStamina = false;
+    }
+
+    private void Update()
+    {
+        //Verificar se pode restaurar a stamina
+        if(permitirRestaurarStamina == true)
+        {
+            RestaurarStamina();
+        }
     }
 
     private void AtualizarStatusMana()
@@ -136,5 +170,61 @@ public class PnlStatusPlayer : MonoBehaviour
         }
 
         AtualizarStatusVida();
+    }
+
+    private void AtualizarStatusStamina()
+    {
+        staminaSlider.value = staminaAtual;
+        txtStamina.text = $"{(int)staminaAtual}/{staminaMax}";
+    }
+
+    public void ConsumirStamina(float valorConsumido)
+    {
+        //Não permitir a restauração da stamina
+        permitirRestaurarStamina = false;
+
+        //Decrementar a stamina
+        staminaAtual -= valorConsumido * Time.deltaTime;
+
+        //verificar se acabou a stamina
+        if (staminaAtual < 0) {
+            staminaAtual = 0;
+        }
+
+        //Atualizo o status da stamina
+        AtualizarStatusStamina();
+
+        //Verificar se exite alguma coroutine de stamina executando
+        if(coroutineStamina != null)
+        {
+            //Interromper essa coroutina
+            StopCoroutine(coroutineStamina);
+        }
+        //Chamar a coroutina para contar o tempo para restaurar a stamina
+        coroutineStamina = StartCoroutine(TempoRestauracaoCoroutine());
+    }
+
+    public bool TemStamina()
+    {
+        return staminaAtual > 0;
+    }
+
+    private void RestaurarStamina()
+    {
+        staminaAtual += valorRestaurarStamina * Time.deltaTime;
+
+        if(staminaAtual > staminaMax)
+        {
+            staminaAtual = staminaMax;
+            permitirRestaurarStamina = false;
+        }
+
+        AtualizarStatusStamina();
+    }
+
+    private IEnumerator TempoRestauracaoCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        permitirRestaurarStamina = true;
     }
 }
