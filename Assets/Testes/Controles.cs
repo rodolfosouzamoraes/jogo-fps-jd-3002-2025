@@ -11,17 +11,18 @@ public class Controles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
-        {
-            Debug.Log("Letra Q");
+        //Captar a tecla do teclado para exibir a letra no console
+        if (Input.GetKey(KeyCode.A)){
+            Debug.Log("A");
         }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("Letra W");
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            Debug.Log("Q");
         }
-        if (Input.GetKeyUp(KeyCode.E)) 
+
+        if (Input.GetKeyUp(KeyCode.E))
         {
-            Debug.Log("Letra E");
+            Debug.Log("E");
         }
     }
 }

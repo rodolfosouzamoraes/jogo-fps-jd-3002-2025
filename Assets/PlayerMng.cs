@@ -6,8 +6,8 @@ public class PlayerMng : MonoBehaviour
     public static MovimentarPlayer MovimentarPlayer;
     public static AnimacaoPlayer AnimacaoPlayer;
     public static AtaquePlayer AtaquePlayer;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Awake()
     {
         if(Instance == null)
         {
@@ -18,6 +18,12 @@ public class PlayerMng : MonoBehaviour
             return;
         }
         Destroy(gameObject);
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame

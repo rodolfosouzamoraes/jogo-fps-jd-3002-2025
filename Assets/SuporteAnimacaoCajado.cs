@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class SuporteAnimacaoCajado : MonoBehaviour
 {
+
+    /// <summary>
+    /// Método acessado pela animação do cajado
+    /// </summary>
     public void ConsumirMana()
     {
-        //Pegar o consumo de mana do player
+        //Pegar o consumo da mana do player
         float mana = PlayerMng.AtaquePlayer.consumoMana;
 
         //Consumir a mana na UI

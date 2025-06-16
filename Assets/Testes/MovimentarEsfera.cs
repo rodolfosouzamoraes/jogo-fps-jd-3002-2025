@@ -14,19 +14,24 @@ public class MovimentarEsfera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovimentarPelaForca();
+        //MovimentarPelaForca();
     }
 
-    public void MovimentarPelaPosicao()
+    private void MovimentarPelaPosicao()
     {
+        //Devemos movimentar o objeto pela posição que ele está
+        //Incrementando um valor de tempos em tempos para poder movimentar em uma direção
         transform.position += Vector3.forward * velocidade * Time.deltaTime;
     }
-    public void MovimentarPeloTranslate()
+
+    private void MovimentarPeloTranslate()
     {
         transform.Translate(Vector3.forward * velocidade * Time.deltaTime);
     }
-    public void MovimentarPelaForca()
+
+    private void MovimentarPelaForca()
     {
+        //Aplicar uma força ao corpo do objeto em determinada direção
         corpo.AddForce(Vector3.forward * forca * Time.deltaTime);
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +6,11 @@ using UnityEngine.UI;
 public class PnlStatusPlayer : MonoBehaviour
 {
     [Header("Config Mana")]
-    public float manaMax; //Valor máximo da mana do player
+    public float manaMax; //valor máximo da mana do player
     public float manaAtual; //valor atual da mana
     public float consumoConstante; //valor constante do consumo da mana
-    public Slider manaSlider; //Slider da mana
-    public TextMeshProUGUI txtMana; // TextMeshPro da mana
+    public Slider manaSlider; //slider da mana    
+    public TextMeshProUGUI txtMana; //TextMeshPro da mana
 
     [Header("Config Vida")]
     public float vidaMax;
@@ -24,48 +23,17 @@ public class PnlStatusPlayer : MonoBehaviour
     public float staminaAtual;
     public Slider staminaSlider;
     public TextMeshProUGUI txtStamina;
-    public float valorRestaurarStamina;
-    private bool permitirRestaurarStamina;
-    private Coroutine coroutineStamina;
+    public float valorRestaurarStamina; //Definir o valor de restauração da stamina
+    private bool permitirRestaurarStamina; //Define se pode restaurar a stamina
+    private Coroutine coroutineStamina; //Armazena a coroutina para permitir voltar a restaurar a stamina
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Definir a mana no máximo ao iniciar o jogo
-        manaAtual = manaMax;
-
-        //Configurar o slider
-        manaSlider.maxValue = manaMax;
-        manaSlider.minValue = 0;
-        manaSlider.value = manaAtual;
-
-        //Configurar o texto da mana
-        txtMana.text = $"{manaAtual}/{manaMax}";
-
-        //Definir a vida atual
-        vidaAtual = vidaMax;
-
-        //Configurar o slider
-        vidaSlider.maxValue = vidaMax;
-        vidaSlider.minValue = 0;
-        vidaSlider.value = vidaAtual;
-
-        //Configurar o texto da vida
-        txtVida.text = $"{vidaAtual}/{vidaMax}";
-
-        //Definir a stamina inicial
-        staminaAtual = staminaMax;
-
-        //configurar o slider
-        staminaSlider.maxValue = staminaMax;
-        staminaSlider.minValue = 0;
-        staminaSlider.value = staminaAtual;
-
-        //Configurar texto da stamina
-        txtStamina.text = $"{staminaAtual}/{staminaMax}";
-
-        //Definir para não restaurar no inicio a stamina
-        permitirRestaurarStamina = false;
+        ConfigurarMana();
+        ConfigurarStamina();
+        ConfigurarVida();        
     }
 
     private void Update()
@@ -77,10 +45,49 @@ public class PnlStatusPlayer : MonoBehaviour
         }
     }
 
-    private void AtualizarStatusMana()
+    private void ConfigurarMana()
     {
+        //Defini a mana no maximo ao iniciar o jogo
+        manaAtual = manaMax;
+
+        //Configurar o slider
+        manaSlider.maxValue = manaMax;
+        manaSlider.minValue = 0;
         manaSlider.value = manaAtual;
-        txtMana.text = $"{(int)manaAtual}/{manaMax}";
+
+        //Configurar o texto da mana
+        txtMana.text = $"{manaAtual}/{manaMax}";
+    }
+
+    private void ConfigurarVida()
+    {
+        //Defini a vida no maximo ao iniciar o jogo
+        vidaAtual = vidaMax;
+
+        //Configurar o slider
+        vidaSlider.maxValue = vidaMax;
+        vidaSlider.minValue = 0;
+        vidaSlider.value = vidaAtual;
+
+        //Configurar o texto da vida
+        txtVida.text = $"{vidaAtual}/{vidaMax}";
+    }
+
+    private void ConfigurarStamina()
+    {
+        //Defini a stamina no maximo ao iniciar o jogo
+        staminaAtual = staminaMax;
+
+        //Configurar o slider
+        staminaSlider.maxValue = staminaMax;
+        staminaSlider.minValue = 0;
+        staminaSlider.value = staminaAtual;
+
+        //Configurar o texto da stamina
+        txtStamina.text = $"{staminaAtual}/{staminaMax}";
+
+        //Definir para não restaurar no inicio a stamina
+        permitirRestaurarStamina = false;
     }
 
     public void ConsumirMana(float consumo)
@@ -88,10 +95,10 @@ public class PnlStatusPlayer : MonoBehaviour
         //Verificar se tem mana
         if(manaAtual >= consumo)
         {
-            //Remover a quantidade de mana
+            //Remover a quantidade da mana
             manaAtual -= consumo;
 
-            //Atualizar o status da mana
+            //Atualizar a mana
             AtualizarStatusMana();
         }
     }
@@ -107,7 +114,7 @@ public class PnlStatusPlayer : MonoBehaviour
             manaAtual = 0;
         }
 
-        //Atualizar o status da mana
+        //Atualizar o status
         AtualizarStatusMana();
     }
 
@@ -121,50 +128,49 @@ public class PnlStatusPlayer : MonoBehaviour
         return manaAtual > 0;
     }
 
+    private void AtualizarStatusMana()
+    {
+        manaSlider.value = manaAtual;
+        txtMana.text = $"{(int)manaAtual}/{manaMax}";
+    }
+
     public void IncrementarMana(float porcentagem)
     {
-        //Calcular a mana adquirida
-        float calculoMana = manaMax * porcentagem;
+        manaAtual += manaMax * porcentagem;
 
-        //Incrementar na mana atual
-        manaAtual += calculoMana;
-
-        //Verificar se a mana ultrassou o limite máximo
         if(manaAtual > manaMax)
         {
-            //Limito a mana atual ao valor máximo
             manaAtual = manaMax;
         }
 
-        //Atualizar o status da mana
         AtualizarStatusMana();
     }
 
     private void AtualizarStatusVida()
     {
         vidaSlider.value = vidaAtual;
-        txtVida.text = $"{vidaAtual}/{vidaMax}";
+        txtVida.text = $"{(int)vidaAtual}/{vidaMax}";
     }
 
-    public void ConsumirVidaPlayer(float valorConsumido)
+    public void ConsumirVida(float valorConsumido)
     {
         vidaAtual -= valorConsumido;
 
-        if (vidaAtual <= 0) { 
+        if(vidaAtual < 0)
+        {
             vidaAtual = 0;
-            //Game Over            
+            //Game Over
+
         }
 
         AtualizarStatusVida();
     }
 
-    public void IncrementarVidaPlayer(float porcentagem)
+    public void IncrementarVida(float porcentagem)
     {
-        float calculoVida = vidaMax * porcentagem;
+        vidaAtual += vidaMax * porcentagem;
 
-        vidaAtual += calculoVida;
-
-        if (vidaAtual > vidaMax)
+        if(vidaAtual > vidaMax)
         {
             vidaAtual = vidaMax;
         }
@@ -175,38 +181,7 @@ public class PnlStatusPlayer : MonoBehaviour
     private void AtualizarStatusStamina()
     {
         staminaSlider.value = staminaAtual;
-        txtStamina.text = $"{(int)staminaAtual}/{staminaMax}";
-    }
-
-    public void ConsumirStamina(float valorConsumido)
-    {
-        //Não permitir a restauração da stamina
-        permitirRestaurarStamina = false;
-
-        //Decrementar a stamina
-        staminaAtual -= valorConsumido * Time.deltaTime;
-
-        //verificar se acabou a stamina
-        if (staminaAtual < 0) {
-            staminaAtual = 0;
-        }
-
-        //Atualizo o status da stamina
-        AtualizarStatusStamina();
-
-        //Verificar se exite alguma coroutine de stamina executando
-        if(coroutineStamina != null)
-        {
-            //Interromper essa coroutina
-            StopCoroutine(coroutineStamina);
-        }
-        //Chamar a coroutina para contar o tempo para restaurar a stamina
-        coroutineStamina = StartCoroutine(TempoRestauracaoCoroutine());
-    }
-
-    public bool TemStamina()
-    {
-        return staminaAtual > 0;
+        txtStamina.text = $"{(int) staminaAtual}/{staminaMax}";
     }
 
     private void RestaurarStamina()
@@ -222,9 +197,39 @@ public class PnlStatusPlayer : MonoBehaviour
         AtualizarStatusStamina();
     }
 
-    private IEnumerator TempoRestauracaoCoroutine()
+    private IEnumerator TempoRestauracaoStaminaCoroutine()
     {
         yield return new WaitForSeconds(3f);
         permitirRestaurarStamina = true;
+    }
+
+    public void ConsumirStamina(float valorConsumido)
+    {
+        //Não permitir a restauração da stamina
+        permitirRestaurarStamina = false;
+        
+        //Decrementar a stamina
+        staminaAtual -= valorConsumido * Time.deltaTime;
+
+        //Verificar se acabou a stamina
+        if (staminaAtual < 0) {
+            staminaAtual = 0;
+        }
+
+        //Atualizar o status 
+        AtualizarStatusStamina();
+
+        //Verificar se existe alguma coroutina de stamina executando
+        if (coroutineStamina != null) { 
+            //Interromper essa coroutine
+            StopCoroutine(coroutineStamina);
+        }
+        //Chamar a coroutina para começar a contar o tempo de restauração da stamina
+        coroutineStamina = StartCoroutine(TempoRestauracaoStaminaCoroutine());
+    }
+
+    public bool TemStamina()
+    {
+        return staminaAtual > 0;
     }
 }
