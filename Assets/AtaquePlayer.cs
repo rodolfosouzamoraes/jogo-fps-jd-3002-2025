@@ -10,6 +10,8 @@ public class AtaquePlayer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        consumoMana = GameManager.DadosPlayer.consumoMana;
+
         //Selecionar o cajado ao iniciar o jogo
         SelecionarArma(0);
     }
@@ -54,5 +56,10 @@ public class AtaquePlayer : MonoBehaviour
 
         //Ativar arma indicada
         armas[id].SetActive(true);
+    }
+
+    public void AtualizarConsumoMana()
+    {
+        consumoMana = GameManager.DadosPlayer.consumoMana;
     }
 }
