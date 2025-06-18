@@ -42,4 +42,9 @@ public class GameManager : MonoBehaviour
     {
         DadosPlayer = DBMng.ConsumirMoedas(consumo);
     }
+
+    public static void AdicionarMoedas(int moedas)
+    {
+        DadosPlayer = DBMng.AdicionarMoedas(moedas);
+    }
 }

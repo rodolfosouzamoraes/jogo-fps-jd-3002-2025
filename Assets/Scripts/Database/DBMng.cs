@@ -123,4 +123,15 @@ public static class DBMng
 
         return player;
     }
+
+    public static Player AdicionarMoedas(int valorInserido)
+    {
+        Player player = ObterDadosPlayer();
+
+        player.moedas += valorInserido;
+
+        SalvarDadosPlayer(player);
+
+        return player;
+    }
 }
