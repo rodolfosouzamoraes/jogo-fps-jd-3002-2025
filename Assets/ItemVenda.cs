@@ -4,23 +4,42 @@ using UnityEngine.UI;
 
 public class ItemVenda : MonoBehaviour
 {
-    public AtributoVenda[] vendas;
-    public int idVenda;
+    public EnumAtributoPlayer idVenda;
     public TextMeshProUGUI txtNome;
-    public TextMeshProUGUI txtMoedas;
+    public TextMeshProUGUI txtValorVenda;
     public Image imgIconeVenda;
     public Color botaoCompraOn;
     public Color botaoCompraOff;
     public Image imgBotaoCompra;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private int valorVenda;
+    private float totalMoedas;
+    private bool permitirCompra;
+    
+    public void ConfigurarItem(AtributoVenda venda, int moedasPlayer)
     {
-        
+        idVenda = venda.id;
+        valorVenda = venda.valorVenda;
+        totalMoedas = moedasPlayer;
+        txtNome.text = venda.nome;
+        txtValorVenda.text = $"{valorVenda}";
+        imgIconeVenda.sprite = venda.icone;
+        permitirCompra = totalMoedas >= valorVenda;
+
+        //Verificar qual cor do botão colocar
+        if(permitirCompra == true)
+        {
+            imgBotaoCompra.color = botaoCompraOn;
+        }
+        else
+        {
+            imgBotaoCompra.color = botaoCompraOff;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ComprarItem()
     {
-        
+        if (permitirCompra == false) return;
+
+        //Compro o item
     }
 }

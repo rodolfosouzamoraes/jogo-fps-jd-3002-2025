@@ -4,8 +4,8 @@ using UnityEngine;
 [Serializable]
 public class AtributoVenda
 {
-    public int id;
+    public EnumAtributoPlayer id;
     public string nome;
-    public float valorCompra;
+    public int valorVenda;
     public Sprite icone;
 }

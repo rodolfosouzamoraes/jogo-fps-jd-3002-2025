@@ -1,22 +1,93 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PnlLoja : MonoBehaviour
 {
     public GameObject pnlLoja;
+    public GameObject itemVenda;
+    public AtributoVenda[] atributosVendas;
+    public List<GameObject> listaItemVenda;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pnlLoja.SetActive(false);
+
+        //Inicializar a lista de itens venda
+        listaItemVenda = new List<GameObject>();
     }
 
     public void ExibirPainelLoja()
     {
         pnlLoja.SetActive(true);
         CanvasGameMng.Instance.PausarJogo();
+
+        ConfigurarItens();
+        
     }
     public void OcultarPainelLoja()
     {
         pnlLoja.SetActive(false);
         CanvasGameMng.Instance.DespausarJogo();
+    }
+
+    private void ConfigurarItens()
+    {
+        //Percorrer a lista de itens e apagar todo os itens que lá existe
+        foreach (var item in listaItemVenda) {
+            Destroy(item);
+        }
+        //Limpar a lista
+        listaItemVenda.Clear();
+
+        //percorrer a lista de atributos para inserir no painel loja
+        foreach (var atributo in atributosVendas)
+        {
+            //Verficar qual o tipo do atributo para poder atualizar o valor da venda
+            switch (atributo.id)
+            {
+                case EnumAtributoPlayer.mana:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_MANA_NV * GameManager.DadosPlayer.nvMana;
+                    break;
+                case EnumAtributoPlayer.vida:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_VIDA_NV * GameManager.DadosPlayer.nvVida;
+                    break;
+                case EnumAtributoPlayer.stamina:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_STAMINA_NV * GameManager.DadosPlayer.nvStamina;
+                    break;
+                case EnumAtributoPlayer.cajado:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_CAJADO_NV * GameManager.DadosPlayer.nvCajado;
+                    break;
+                case EnumAtributoPlayer.arco:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_ARCO_NV * GameManager.DadosPlayer.nvArco;
+                    break;
+                case EnumAtributoPlayer.flecha:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_FLECHAS * (int)(GameManager.DadosPlayer.arcoMax * 0.5f);
+                    break;
+                case EnumAtributoPlayer.consumoMana:
+                    atributo.valorVenda = CustoInicialAtributo.PRECO_CONSUMO_MANA * (int)(GameManager.DadosPlayer.consumoMana * 1.5f);
+                    break;
+            }
+
+            //Instanciar o item venda
+            GameObject novoItemVenda = Instantiate(itemVenda, pnlLoja.transform);
+
+            //Configurar o item venda
+            novoItemVenda.GetComponent<ItemVenda>().ConfigurarItem(
+                atributo,
+                GameManager.DadosPlayer.moedas
+            );
+
+            //Armazenar na lista o novo item
+            listaItemVenda.Add(novoItemVenda);
+        }
+    }
+
+    public void ComprarItem(EnumAtributoPlayer idItem, int valorItem)
+    {
+        //Consumir as moedas do player
+        GameManager.ConsumirMoedas(valorItem);
+
+        //Subir o nível ou aumentar limites
+        //Atualizar os dados dos itens na loja
     }
 }
