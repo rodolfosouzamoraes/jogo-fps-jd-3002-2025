@@ -80,37 +80,19 @@ public static class DBMng
                 player.nvArco += 1;
                 player.danoArco *= 1.07f;
             break;
+            case EnumAtributoPlayer.flecha:
+                player.arcoMax += 5;
+            break;
+            case EnumAtributoPlayer.consumoMana:
+                player.consumoMana = player.consumoMana - (player.consumoMana * 0.03f);
+                player.consumoMana = Mathf.Clamp(player.consumoMana, 10, 25);
+            break;
         }
         //Salvar os dados atualizados
         SalvarDadosPlayer(player);
 
         //Retornar o player atualizado
         return player;
-    }
-
-    public static Player AumentarFlechas()
-    {
-        Player player = ObterDadosPlayer();
-
-        player.arcoMax += 5;
-
-        SalvarDadosPlayer(player);
-
-        return player;
-    }
-
-    public static Player DiminuirConsumoMana()
-    {
-        Player player = ObterDadosPlayer();
-
-        player.consumoMana = player.consumoMana - (player.consumoMana * 0.03f);
-
-        player.consumoMana = Mathf.Clamp(player.consumoMana, 10, 25);
-
-        SalvarDadosPlayer(player);
-
-        return player;
-
     }
 
     public static Player ConsumirMoedas(int valorConsumido)

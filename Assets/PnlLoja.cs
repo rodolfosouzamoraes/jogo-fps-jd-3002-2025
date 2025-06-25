@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PnlLoja : MonoBehaviour
@@ -7,6 +8,8 @@ public class PnlLoja : MonoBehaviour
     public GameObject itemVenda;
     public AtributoVenda[] atributosVendas;
     public List<GameObject> listaItemVenda;
+    public TextMeshProUGUI txtMoedas;
+    public GameObject contentVenda;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +35,8 @@ public class PnlLoja : MonoBehaviour
 
     private void ConfigurarItens()
     {
+        txtMoedas.text = $"{GameManager.DadosPlayer.moedas}";
+
         //Percorrer a lista de itens e apagar todo os itens que lá existe
         foreach (var item in listaItemVenda) {
             Destroy(item);
@@ -69,7 +74,7 @@ public class PnlLoja : MonoBehaviour
             }
 
             //Instanciar o item venda
-            GameObject novoItemVenda = Instantiate(itemVenda, pnlLoja.transform);
+            GameObject novoItemVenda = Instantiate(itemVenda, contentVenda.transform);
 
             //Configurar o item venda
             novoItemVenda.GetComponent<ItemVenda>().ConfigurarItem(
@@ -88,6 +93,12 @@ public class PnlLoja : MonoBehaviour
         GameManager.ConsumirMoedas(valorItem);
 
         //Subir o nível ou aumentar limites
+        GameManager.SubirNivel(idItem);
+
         //Atualizar os dados dos itens na loja
+        ConfigurarItens();
+
+        //Atualizar a UI do player
+        CanvasGameMng.PnlStatusPlayer.AtualizarTodosAtributosPlayer();
     }
 }

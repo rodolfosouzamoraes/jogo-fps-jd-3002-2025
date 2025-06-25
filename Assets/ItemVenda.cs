@@ -41,5 +41,6 @@ public class ItemVenda : MonoBehaviour
         if (permitirCompra == false) return;
 
         //Compro o item
+        CanvasGameMng.PnlLoja.ComprarItem(idVenda, valorVenda);
     }
 }

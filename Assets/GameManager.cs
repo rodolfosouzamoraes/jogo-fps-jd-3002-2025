@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
         {
             player = DBMng.ObterDadosPlayer();
+
+            //Atribuir valor moedas temporariamente
+            DadosPlayer.moedas = 10000;
+            DBMng.SalvarDadosPlayer(player);
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
             return;
@@ -26,16 +31,6 @@ public class GameManager : MonoBehaviour
     public static void SubirNivel(EnumAtributoPlayer atributoPlayer)
     {
         DadosPlayer = DBMng.SubirNivel(atributoPlayer);
-    }
-
-    public static void AumentarFlechas()
-    {
-        DadosPlayer = DBMng.AumentarFlechas();
-    }
-
-    public static void DiminuirConsumoMana()
-    {
-        DadosPlayer = DBMng.DiminuirConsumoMana();
     }
 
     public static void ConsumirMoedas(int consumo)
