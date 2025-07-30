@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,13 +9,12 @@ public class ItemVenda : MonoBehaviour
     public TextMeshProUGUI txtNome;
     public TextMeshProUGUI txtValorVenda;
     public Image imgIconeVenda;
+    public Image imgBotaoCompra;
     public Color botaoCompraOn;
     public Color botaoCompraOff;
-    public Image imgBotaoCompra;
     private int valorVenda;
-    private float totalMoedas;
+    private int totalMoedas;
     private bool permitirCompra;
-    
     public void ConfigurarItem(AtributoVenda venda, int moedasPlayer)
     {
         idVenda = venda.id;
@@ -26,8 +26,7 @@ public class ItemVenda : MonoBehaviour
         permitirCompra = totalMoedas >= valorVenda;
 
         //Verificar qual cor do botão colocar
-        if(permitirCompra == true)
-        {
+        if (permitirCompra == true) { 
             imgBotaoCompra.color = botaoCompraOn;
         }
         else
@@ -40,7 +39,7 @@ public class ItemVenda : MonoBehaviour
     {
         if (permitirCompra == false) return;
 
-        //Compro o item
+        //Comprar o item
         CanvasGameMng.PnlLoja.ComprarItem(idVenda, valorVenda);
     }
 }

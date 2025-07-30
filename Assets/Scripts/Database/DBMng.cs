@@ -32,12 +32,11 @@ public static class DBMng
             novoPlayer.danoArco = 75;
             novoPlayer.moedas = 0;
 
-            //Salvar o player
+            //Salvar o novo Player
             SalvarDadosPlayer(novoPlayer);
 
             return novoPlayer;
         }
-
         return player;
     }
 
@@ -55,13 +54,13 @@ public static class DBMng
         //Objter os dados atualizados do player
         Player player = ObterDadosPlayer();
 
-        //Verificar qual atributo para subir de nivel
+        //Verificar qual atributo para subir de nível
         switch (atributoPlayer)
         {
             case EnumAtributoPlayer.mana:
                 //Subir o nível da mana
                 player.nvMana += 1;
-                //Atualizar a mana MAX
+                //Atualizar a mana Max
                 player.manaMax *= 1.15f;
             break;
             case EnumAtributoPlayer.vida:
@@ -84,22 +83,28 @@ public static class DBMng
                 player.arcoMax += 5;
             break;
             case EnumAtributoPlayer.consumoMana:
-                player.consumoMana = player.consumoMana - (player.consumoMana * 0.03f);
-                player.consumoMana = Mathf.Clamp(player.consumoMana, 10, 25);
+                player.consumoMana *= -1.03f;
+
+                //Limitar o consumo minimo da mana
+                if (player.consumoMana < 10)
+                {
+                    player.consumoMana = 10;
+                }
             break;
         }
-        //Salvar os dados atualizados
+
+        //Salvar os dados
         SalvarDadosPlayer(player);
 
         //Retornar o player atualizado
         return player;
     }
 
-    public static Player ConsumirMoedas(int valorConsumido)
+    public static Player ConsumirMoedas(int valorCosumido)
     {
         Player player = ObterDadosPlayer();
 
-        player.moedas -= valorConsumido;
+        player.moedas -= valorCosumido;
 
         SalvarDadosPlayer(player);
 

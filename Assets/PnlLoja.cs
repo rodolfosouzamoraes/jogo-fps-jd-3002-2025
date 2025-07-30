@@ -15,17 +15,18 @@ public class PnlLoja : MonoBehaviour
     {
         pnlLoja.SetActive(false);
 
-        //Inicializar a lista de itens venda
+        //Iniciar a variavel da lista de itens
         listaItemVenda = new List<GameObject>();
+
+        txtMoedas.text = $"{GameManager.DadosPlayer.moedas}";
     }
 
     public void ExibirPainelLoja()
     {
         pnlLoja.SetActive(true);
         CanvasGameMng.Instance.PausarJogo();
-
-        ConfigurarItens();
         
+        ConfigurarItens();
     }
     public void OcultarPainelLoja()
     {
@@ -37,17 +38,18 @@ public class PnlLoja : MonoBehaviour
     {
         txtMoedas.text = $"{GameManager.DadosPlayer.moedas}";
 
-        //Percorrer a lista de itens e apagar todo os itens que lá existe
-        foreach (var item in listaItemVenda) {
+        //Percorrer a lista de itens e apagar todos os itens que lá existe
+        foreach (var item in listaItemVenda)
+        {
             Destroy(item);
         }
         //Limpar a lista
         listaItemVenda.Clear();
 
-        //percorrer a lista de atributos para inserir no painel loja
+        //Percorrer a lista de atributos
         foreach (var atributo in atributosVendas)
         {
-            //Verficar qual o tipo do atributo para poder atualizar o valor da venda
+            //Verificar qual tipo do atributo para poder atualizar o valor da venda
             switch (atributo.id)
             {
                 case EnumAtributoPlayer.mana:
@@ -82,17 +84,17 @@ public class PnlLoja : MonoBehaviour
                 GameManager.DadosPlayer.moedas
             );
 
-            //Armazenar na lista o novo item
+            //Armazenar na lista
             listaItemVenda.Add(novoItemVenda);
         }
     }
 
     public void ComprarItem(EnumAtributoPlayer idItem, int valorItem)
     {
-        //Consumir as moedas do player
+        //Consumir as moedas
         GameManager.ConsumirMoedas(valorItem);
 
-        //Subir o nível ou aumentar limites
+        //Subir o nível ou aumentar limites dos atributos do player
         GameManager.SubirNivel(idItem);
 
         //Atualizar os dados dos itens na loja

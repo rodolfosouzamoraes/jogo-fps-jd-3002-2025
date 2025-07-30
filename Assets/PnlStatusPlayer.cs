@@ -96,8 +96,8 @@ public class PnlStatusPlayer : MonoBehaviour
 
     public void ConfigurarConsumoManaConstante()
     {
-        //Obter o consumo padrão da mana
-        consumoConstante = GameManager.DadosPlayer.consumoMana + (GameManager.DadosPlayer.consumoMana * 0.5f);
+        //Obter o consumo padrão da mana e aumentar um pouco
+        consumoConstante = GameManager.DadosPlayer.consumoMana * 1.5f;
     }
 
     public void ConsumirMana(float consumo)
@@ -246,8 +246,8 @@ public class PnlStatusPlayer : MonoBehaviour
     public void AtualizarTodosAtributosPlayer()
     {
         ConfigurarMana();
-        ConfigurarStamina();
         ConfigurarVida();
+        ConfigurarStamina();
         ConfigurarConsumoManaConstante();
     }
 }
