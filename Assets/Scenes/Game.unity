@@ -2582,6 +2582,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1670355753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &682287017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1462480221388720828, guid: 4cff886087886cb40b794b4833df1684, type: 3}
+  m_PrefabInstance: {fileID: 2246314970872182644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &682287019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4342115129779562860, guid: 4cff886087886cb40b794b4833df1684, type: 3}
+  m_PrefabInstance: {fileID: 2246314970872182644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682287017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b401c971486ed49a03ced8dd695e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &682287025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682287017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4c9adfe214e0542baf288ab64f7339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movimentarInimigo: {fileID: 682287019}
+  tempoAtaque: 1
+  tempoProximoAtaque: 0
+  valorDano: 5
+  tempoAtual: 0
 --- !u!1 &691651987
 GameObject:
   m_ObjectHideFlags: 0
@@ -7311,6 +7344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inimigo
       objectReference: {fileID: 0}
+    - target: {fileID: 4342115129779562860, guid: 4cff886087886cb40b794b4833df1684, type: 3}
+      propertyPath: distanciaMinimaDoPlayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4405630886120648949, guid: 4cff886087886cb40b794b4833df1684, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.31
@@ -7354,7 +7391,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1462480221388720828, guid: 4cff886087886cb40b794b4833df1684, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 682287025}
   m_SourcePrefab: {fileID: 100100000, guid: 4cff886087886cb40b794b4833df1684, type: 3}
 --- !u!33 &2348148325716673711
 MeshFilter:
