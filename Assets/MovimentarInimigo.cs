@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class MovimentarInimigo : MonoBehaviour
 {
-    private NavMeshAgent agent; //IA do Inimigo
+    protected NavMeshAgent agent; //IA do Inimigo
     public float velocidade; //velocidade da movimentação
     public float distanciaMinimaDoPlayer; //Definir a distancia minima entre o inimigo e o player
     public bool estaVendoPlayer; //Definir se o inimigo está vendo o player
@@ -24,7 +24,7 @@ public class MovimentarInimigo : MonoBehaviour
         PerseguirPlayer();
     }
 
-    private void PerseguirPlayer()
+    protected void PerseguirPlayer()
     {
         //Definir a distancia entre o player e o inimigo
         float distancia = Vector3.Distance(

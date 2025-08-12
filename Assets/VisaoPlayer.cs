@@ -41,17 +41,11 @@ public class VisaoPlayer : MonoBehaviour
 
             //Armazenar o objeto do alvo visto
             alvo = hit.transform.gameObject;
-
-            //Escrever o nome do objeto visto
-            Debug.Log($"Estou vendo: {alvo.name}");
         }
         else
         {
             //Remover o alvo do objeto
             alvo = null;
-
-            //Escrever que não está vendo nada
-            Debug.Log("Não estou vendo nada!");
         }
     }
 
