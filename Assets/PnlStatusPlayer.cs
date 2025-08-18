@@ -27,6 +27,10 @@ public class PnlStatusPlayer : MonoBehaviour
     private bool permitirRestaurarStamina; //Define se pode restaurar a stamina
     private Coroutine coroutineStamina; //Armazena a coroutina para permitir voltar a restaurar a stamina
 
+    [Header("Config Topo")]
+    public GameObject pnlTopo;
+    public GameObject[] iconesBaus;
+    private int totalBausAbertos = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -249,5 +253,11 @@ public class PnlStatusPlayer : MonoBehaviour
         ConfigurarVida();
         ConfigurarStamina();
         ConfigurarConsumoManaConstante();
+    }
+
+    public void IncrementarBausAbertos()
+    {
+        totalBausAbertos++;
+        iconesBaus[totalBausAbertos].SetActive(true);
     }
 }
