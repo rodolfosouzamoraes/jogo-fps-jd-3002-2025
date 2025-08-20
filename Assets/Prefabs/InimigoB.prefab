@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 6117614801246263378}
   - component: {fileID: 6909507864476284170}
   - component: {fileID: 1149075086107245079}
+  - component: {fileID: 431512867806309906}
   m_Layer: 0
   m_Name: InimigoB
   m_TagString: Inimigo
@@ -115,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4392639844812187784}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.5525664, z: -0, w: 0.83346885}
+  m_LocalRotation: {x: 0, y: 0.55257, z: 0, w: 0.83346653}
   m_LocalPosition: {x: 4.69, y: 1.4589499, z: -22.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -227,3 +228,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 50
+--- !u!195 &431512867806309906
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4392639844812187784}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

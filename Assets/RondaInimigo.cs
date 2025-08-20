@@ -1,14 +1,22 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RondaInimigo : MovimentarInimigo
 {
     public float distanciaPerseguicao;
     private Vector3 posicaoInicial;
 
-    private void Awake()
+    void Start()
     {
+        //Referenciar a IA do inimigo
+        agent = GetComponent<NavMeshAgent>();
+
+        //Definir a velocidade de movimentacao do inimigo
+        agent.speed = velocidade;
+
         posicaoInicial = transform.position;
     }
+
     // Update is called once per frame
     void Update()
     {

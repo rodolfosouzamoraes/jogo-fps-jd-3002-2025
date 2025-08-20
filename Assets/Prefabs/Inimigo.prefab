@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1230389889138388848}
   - component: {fileID: 4342115129779562860}
   - component: {fileID: 8363022208635352445}
+  - component: {fileID: 3895873914450228963}
   m_Layer: 0
   m_Name: Inimigo
   m_TagString: Inimigo
@@ -140,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 5
+  distanciaMinimaDoPlayer: 2
+  estaVendoPlayer: 0
 --- !u!195 &8363022208635352445
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -162,6 +165,23 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3895873914450228963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462480221388720828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4c9adfe214e0542baf288ab64f7339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movimentarInimigo: {fileID: 4342115129779562860}
+  tempoAtaque: 1
+  tempoProximoAtaque: 0
+  valorDano: 5
+  tempoAtual: 0
 --- !u!1 &1463774805111739329
 GameObject:
   m_ObjectHideFlags: 0

@@ -328,6 +328,8 @@ public class PnlStatusPlayer : MonoBehaviour
     public void GameOver()
     {
         fimDeJogo = true;
+        pnlTopo.SetActive(false);
+        pnlFimDeJogo.SetActive(false);
         pnlGameOver.SetActive(true);
         Invoke("ReiniciarJogo", 3);
     }
