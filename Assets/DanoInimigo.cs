@@ -3,6 +3,7 @@ using UnityEngine;
 public class DanoInimigo : MonoBehaviour
 {
     public float vida;
+    public bool sofreuDano;
     private InstanciarInimigos controladorDeNovoInimigos;
     
     public void EfetuarDano(float dano)
@@ -19,6 +20,9 @@ public class DanoInimigo : MonoBehaviour
             //Destruir o inimigo
             Destroy(gameObject);
         }
+
+        //Dizer que sofreu um dano
+        sofreuDano = true;
     }
 
     public void ReferenciarInimigo(InstanciarInimigos referencia)

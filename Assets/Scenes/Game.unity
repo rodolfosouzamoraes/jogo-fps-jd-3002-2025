@@ -9798,11 +9798,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fab1e3884bb7a4c95f85f34d61ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inimigos:
-  - {fileID: 1462480221388720828, guid: 4cff886087886cb40b794b4833df1684, type: 3}
-  - {fileID: 4392639844812187784, guid: e921ed25d13053f4e90606b1c8241b99, type: 3}
-  - {fileID: 3315853549481403885, guid: 365d6d42ebd5034429deb1a6a8e95ca3, type: 3}
-  maximoInimigosNaFase: 50
+  inimigosPorLevel:
+  - inimigo: {fileID: 1462480221388720828, guid: 4cff886087886cb40b794b4833df1684, type: 3}
+    quantidade: 5
+  - inimigo: {fileID: 4392639844812187784, guid: e921ed25d13053f4e90606b1c8241b99, type: 3}
+    quantidade: 20
+  - inimigo: {fileID: 3315853549481403885, guid: 365d6d42ebd5034429deb1a6a8e95ca3, type: 3}
+    quantidade: 15
+  - inimigo: {fileID: 3315853549481403885, guid: fdff0c2bcc7dbf047ac2338e93c6dbc5, type: 3}
+    quantidade: 10
   distanciaInicialParaNovoInimigo: 50
   distanciaParaNovoInimigo: 30
   tempoEsperaNovoInimigo: 10
